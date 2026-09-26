@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Lead sheets and song sets for the St Paul's Anglican Kogarah music team.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0C1324">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Praise &amp; Glorify">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Praise &amp; Glorify Music</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Space+Mono:wght@400;700&family=Noto+Serif+SC:wght@400;600&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --ground:#0C1324; --panel:#111A30; --panel-2:#16203A;
+  --line:#26304A; --bar:#46506A;
+  --ink:#EDE6D8; --muted:#8C94AA; --faint:#5E6782;
+  --gold:#D6A546; --gold-soft:rgba(214,165,70,.14);
+  --display:"Italiana","Cormorant Garamond",Georgia,serif;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --zh:"Noto Serif SC","Songti SC","PingFang SC",serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--ground);margin:0}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{color:var(--ink);font-family:var(--mono);font-size:14px;line-height:1.5;padding-inline:16px;padding-block:0 48px;
+  background-image:radial-gradient(ellipse at 50% -10%,#18233F 0%,transparent 60%);}
+.wrap{max-width:980px;margin:0 auto}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.label{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+.gold{color:var(--gold)}
+[lang|=zh], .zh{font-family:var(--zh);letter-spacing:.02em}
+
+/* top rule */
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:22px 14px;border-bottom:1px solid var(--line)}
+.topr{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.xlink{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid transparent}
+.xlink:hover{border-bottom-color:var(--gold)}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{background:none;border:0;padding:6px 12px;border-radius:999px;cursor:pointer;font-size:12px;letter-spacing:.12em;color:var(--muted)}
+.lang button[aria-pressed="true"]{background:var(--gold);color:#0C1324;font-weight:700}
+
+/* masthead */
+header.mast{text-align:center;padding-block:34px 6px;display:grid;gap:14px;justify-items:center}
+.mark{width:56px;height:56px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,8.5vw,78px);letter-spacing:.2em;line-height:1;margin:0;text-wrap:balance;padding-left:.2em}
+h1 .amp{font-family:var(--serif);font-style:italic;letter-spacing:0;color:var(--ink);margin-inline:.1em}
+.sub{font-size:12px;letter-spacing:.3em;text-transform:uppercase}
+.sub .zh{letter-spacing:.4em}
+
+/* bar strip: one bar per song in the library; gold = on this Sunday */
+.strip{display:flex;align-items:flex-end;justify-content:center;gap:clamp(3px,1vw,9px);height:84px;margin-block:26px 6px;overflow:hidden}
+.strip span{width:2px;background:var(--bar);position:relative;flex:none}
+.strip span.on{background:var(--gold);width:3px}
+.strip span.on::before{content:"";position:absolute;top:-9px;left:50%;width:7px;height:7px;margin-left:-3.5px;border-radius:50%;background:var(--gold)}
+.strip-cap{text-align:center;font-size:11px;letter-spacing:.2em;color:var(--faint);text-transform:uppercase}
+
+/* this Sunday */
+section{margin-top:44px}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:18px}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(26px,5vw,36px);letter-spacing:.14em;margin:0;text-transform:uppercase}
+h2 .zh{font-family:var(--zh);font-size:.62em;letter-spacing:.2em;color:var(--muted);margin-left:.6em;text-transform:none}
+.week-meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:18px}
+.week-meta b{font-weight:400;color:var(--ink)}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.svc{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.svc h3{margin:0 0 12px;font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:400}
+.set{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.set li{display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:10px}
+.set .n{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--gold)}
+.tbc{color:var(--faint);font-size:13px}
+.who{margin:-4px 0 12px;font-size:12px;color:var(--ink)}
+.who span{color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-size:11px;margin-right:6px}
+.qh{font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin:30px 0 8px}
+.quarter{list-style:none;margin:0;padding:0}
+.quarter li{display:grid;grid-template-columns:minmax(150px,220px) 1fr;gap:6px 18px;padding:12px 0;border-top:1px solid var(--line)}
+.qd{display:grid;gap:2px;font-size:11px;color:var(--faint);letter-spacing:.06em}
+.qd b{font-family:var(--serif);font-weight:500;font-size:18px;color:var(--ink);letter-spacing:0}
+.qs{display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start}
+.qsong{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-family:var(--serif);font-size:16px;cursor:pointer;color:var(--ink)}
+.qsong i{font-family:var(--mono);font-style:normal;font-size:11px;color:var(--gold);margin-left:4px}
+.qsong:hover{border-color:var(--gold)}
+.qsong.off{cursor:default;color:var(--muted);border-style:dashed}
+@media (max-width:560px){.quarter li{grid-template-columns:1fr}}
+
+/* song row */
+.song{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;width:100%;text-align:left;background:none;border:0;padding:0;cursor:pointer}
+.song .t{font-family:var(--serif);font-size:21px;line-height:1.15;color:var(--ink)}
+.song .c{font-family:var(--zh);font-size:14px;color:var(--muted);display:block;margin-top:2px}
+.key{font-size:12px;letter-spacing:.08em;border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:3px 10px;min-width:44px;text-align:center;font-variant-numeric:tabular-nums}
+.key.none{border-color:var(--line);color:var(--faint)}
+
+/* library */
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.search{flex:1 1 260px;display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:10px 16px}
+.search input{flex:1;min-width:0;background:none;border:0;color:var(--ink);font:inherit;font-size:15px;outline:none}
+.search input::placeholder{color:var(--faint)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{background:none;border:1px solid var(--line);border-radius:999px;padding:9px 14px;cursor:pointer;font-size:12px;letter-spacing:.12em;color:var(--muted)}
+.chip[aria-pressed="true"]{border-color:var(--gold);color:var(--ink);background:var(--gold-soft)}
+.lib{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));column-gap:28px}
+.lib li{border-bottom:1px solid var(--line)}
+.lib .song{padding-block:13px}
+.lib .song:hover .t{color:var(--gold)}
+.lib .meta{font-size:11px;letter-spacing:.1em;color:var(--faint);margin-top:4px;display:block}
+.lib li.nosheet .t{color:var(--muted)}
+.empty{color:var(--muted);padding:20px 0}
+.count{font-variant-numeric:tabular-nums}
+
+/* viewer */
+.viewer{position:fixed;inset:0;background:var(--ground);z-index:10;display:flex;flex-direction:column}
+.vbar{display:flex;align-items:center;gap:12px;padding:calc(10px + env(safe-area-inset-top,0px)) 16px 10px;border-bottom:1px solid var(--line);background:var(--ground)}
+.vbar .vt{flex:1;min-width:0}
+.vbar .vt .label{letter-spacing:.12em}
+.vbar .vt .t{font-family:var(--serif);font-size:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.vbtn{background:none;border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer;font-size:12px;letter-spacing:.1em;text-decoration:none;white-space:nowrap}
+.vbtn.primary{border-color:var(--gold);color:var(--gold)}
+.pages{flex:1;overflow:auto;padding:16px 16px calc(24px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:14px}
+.pages canvas{background:#fff;max-width:100%;height:auto;border-radius:4px;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.pages .msg{color:var(--muted);margin-top:40px;text-align:center;max-width:36ch}
+
+.lock{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--panel);border:1px solid var(--gold);border-radius:14px;padding:14px 16px}
+.lock p{margin:0;flex:1 1 240px;font-size:13px;color:var(--ink)}
+.lock input{flex:1 1 160px;min-width:0;background:var(--ground);border:1px solid var(--line);border-radius:999px;padding:10px 14px;color:var(--ink);font:inherit;font-size:16px}
+.lock button{background:var(--gold);color:#0C1324;border:0;border-radius:999px;padding:10px 18px;font-weight:700;letter-spacing:.1em;cursor:pointer}
+.lock .err{flex-basis:100%;color:#E8906C;font-size:12px}
+.unlocked-note{font-size:11px;color:var(--faint);letter-spacing:.1em}
+.unlocked-note button{background:none;border:0;color:var(--gold);cursor:pointer;font:inherit;text-decoration:underline}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;display:grid;gap:10px;justify-items:center;text-align:center}
+footer q{font-family:var(--serif);font-style:italic;font-size:21px;quotes:"“" "”"}
+footer .small{font-size:11px;color:var(--faint);max-width:60ch;letter-spacing:.04em}
+@media (max-width:520px){ .top .label.yr{display:none} .set li{grid-template-columns:22px 1fr auto} }
+@media (prefers-reduced-motion:no-preference){ .strip span{transition:height .6s ease} }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top">
+    <span class="label">St Paul's Anglican Kogarah</span>
+    <div class="topr">
+    <a class="xlink" href="https://claude.ai/artifact/Vffgf3jazMJ1YsCdSbCfew" target="_blank" rel="noopener"><span data-i18n="diary">Term Diary</span> ↗</a>
+    <div class="lang" role="group" aria-label="Language">
+      <button id="lang-en" aria-pressed="true" data-lang="en">EN</button>
+      <button id="lang-zh" aria-pressed="false" data-lang="zh">中文</button>
+    </div>
+    </div>
+  </div>
+
+  <header class="mast">
+    <svg class="mark" viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#111A30"/><g><line x1="96" y1="352" x2="96" y2="300" stroke="#46506A" stroke-width="10"/><line x1="128" y1="352" x2="128" y2="268" stroke="#46506A" stroke-width="10"/><line x1="160" y1="352" x2="160" y2="226" stroke="#D6A546" stroke-width="12"/><line x1="192" y1="352" x2="192" y2="214" stroke="#46506A" stroke-width="10"/><line x1="224" y1="352" x2="224" y2="196" stroke="#46506A" stroke-width="10"/><line x1="256" y1="352" x2="256" y2="158" stroke="#D6A546" stroke-width="12"/><line x1="288" y1="352" x2="288" y2="196" stroke="#46506A" stroke-width="10"/><line x1="320" y1="352" x2="320" y2="214" stroke="#46506A" stroke-width="10"/><line x1="352" y1="352" x2="352" y2="226" stroke="#D6A546" stroke-width="12"/><line x1="384" y1="352" x2="384" y2="268" stroke="#46506A" stroke-width="10"/><line x1="416" y1="352" x2="416" y2="300" stroke="#46506A" stroke-width="10"/></g><circle cx="160" cy="210" r="13" fill="#D6A546"/><circle cx="256" cy="142" r="13" fill="#D6A546"/><circle cx="352" cy="210" r="13" fill="#D6A546"/><line x1="84" y1="366" x2="428" y2="366" stroke="#EDE6D8" stroke-width="5"/></svg>
+    <span class="label gold" data-i18n="eyebrow">Music Ministry · Lead Sheets</span>
+    <h1>PRAISE <span class="amp">&amp;</span> GLORIFY</h1>
+    <span class="sub"><span class="zh">赞美与荣耀 · 音乐事工</span></span>
+  </header>
+
+  <div class="strip" id="strip" aria-hidden="true"></div>
+  <div class="strip-cap" id="strip-cap"></div>
+
+  <form class="lock" id="lock" autocomplete="on">
+    <p id="lock-msg">Enter the music team password to open lead sheets on this device.</p>
+    <input id="pw" type="password" autocomplete="current-password" placeholder="Team password" aria-label="Team password">
+    <button type="submit" id="pw-go">Unlock</button>
+    <span class="err" id="pw-err" hidden></span>
+  </form>
+  <p class="unlocked-note" id="unlocked" hidden><span id="unlocked-t">Lead sheets unlocked on this device.</span> <button type="button" id="relock">Lock</button></p>
+
+  <section id="sunday" aria-labelledby="sunday-h">
+    <div class="sec-head">
+      <h2 id="sunday-h"><span data-i18n="sunday">This Sunday</span><span class="zh">本主日</span></h2>
+      <span class="label" id="week-date"></span>
+    </div>
+    <div class="week-meta" id="week-meta"></div>
+    <div class="services" id="services"></div>
+    <h3 class="qh"><span data-i18n="ahead">The Sundays ahead</span></h3>
+    <ul class="quarter" id="quarter"></ul>
+  </section>
+
+  <section id="library" aria-labelledby="lib-h">
+    <div class="sec-head">
+      <h2 id="lib-h"><span data-i18n="library">Library</span><span class="zh">诗歌库</span></h2>
+      <span class="label count" id="count"></span>
+    </div>
+    <div class="tools">
+      <label class="search" for="q">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color:var(--muted)"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" autocomplete="off" data-i18n-ph="search" placeholder="Search English or Chinese title">
+      </label>
+      <div class="chips" role="group" aria-label="Filter">
+        <button class="chip" id="f-all" data-f="all" aria-pressed="true" data-i18n="all">All</button>
+        <button class="chip" id="f-en" data-f="en" aria-pressed="false" data-i18n="fen">English Choruses</button>
+        <button class="chip" id="f-zh" data-f="zh" aria-pressed="false" data-i18n="fzh">Chinese Choruses</button>
+      </div>
+    </div>
+    <ul class="lib" id="lib"></ul>
+  </section>
+
+  <footer>
+    <q>Singing to God with gratitude in your hearts.</q>
+    <span class="label gold">Colossians III · XVI</span>
+    <span class="small" data-i18n="licence">Lead sheets from CCLI SongSelect for use by St Paul's Kogarah musicians only, under CCLI licence 519980. Please don't forward the sheets outside the team.</span>
+  </footer>
+</div>
+
+<div class="viewer" id="viewer" hidden role="dialog" aria-modal="true" aria-labelledby="v-title">
+  <div class="vbar">
+    <div class="vt"><span class="t" id="v-title"></span><span class="label" id="v-sub"></span></div>
+    <a class="vbtn primary" id="v-open" href="#" target="_blank" rel="noopener" data-i18n="openpdf">Open PDF</a>
+    <button class="vbtn" id="v-close" data-i18n="close">Close</button>
+  </div>
+  <div class="pages" id="pages"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+/* ===== Song sets by Sunday — from the 2026 3rd Quarter Roster. Tim adds each new quarter and fills TBC weeks. ===== */
+const X = (en, zh) => ({ en, zh });   /* a song with no lead sheet in the library */
+const SCHEDULE = [
+  { d:"2026-08-30", type:"Parallel", passage:"Revelation 7:9–17", mEn:"Lucy, Enya", mCn:"Eileen Zhang", en:["holy-holy-holy-nicaea","a-thousand-hallelujahs","all-glory-be-to-christ"], cn:[] },
+  { d:"2026-09-06", type:"Combined · Father's Day", passage:"Matthew 22:1–14", mEn:"Enya, Jenny", en:["great-is-thy-faithfulness","only-a-holy-god","how-deep-the-father-s-love-for-us"] },
+  { d:"2026-09-13", type:"Combined · Communion", passage:"Galatians 3:27–4:7", mEn:"Lucy, Chelsea", en:["build-my-life","christ-our-hope-in-life-and-death","a-thousand-hallelujahs"] },
+  { d:"2026-09-20", type:"Parallel", passage:"Luke 1:1–25", mEn:"Elim, Enya", mCn:"Eileen Zhang", en:["great-is-thy-faithfulness","all-i-have-is-christ","jesus-strong-and-kind"], cn:[] },
+  { d:"2026-09-27", type:"Parallel · Mid-Autumn Festival", passage:"John 8:12–20; Matthew 5:14–16", mEn:"David, Jenny", mCn:"Eileen Zhang, Enya (TBC)", en:["a-thousand-hallelujahs","we-are-one-in-the-father-s-love","his-mercy-is-more"], cn:[] },
+  { d:"2026-10-04", type:"Combined · Communion", passage:"Luke 1:26–45", mEn:"Lucy, Chelsea", en:[X("Whom Have I in Heaven But You","除你以外"),"yet-not-i-but-through-christ-in-me","all-i-have-is-christ"] },
+  { d:"2026-10-11", type:"Combined · 157th Anniversary", passage:"Luke 3:1–38", mEn:"Enya, Lucy, Peter Li, Jenny", en:["christus-victor-amen","all-glory-be-to-christ","facing-a-task-unfinished-we-go-to-all-the-world"] },
+  { d:"2026-10-18", type:"Parallel", passage:"Luke 4:1–15", mEn:"Elim, Enya", mCn:"Eileen Zhang", en:["all-i-have-is-christ","great-is-thy-faithfulness","jerusalem"], cn:[] },
+  { d:"2026-10-25", type:"Parallel", passage:"Luke 4:16–44", mEn:"Lucy, Chelsea", mCn:"Eileen Zhang", en:["build-my-life","only-a-holy-god",X("Calling All Sinners","")], cn:[] },
+  { d:"2026-11-01", type:"Combined · Communion", passage:"Luke 5:1–26", mEn:"Enya, Peter Li", en:["great-is-thy-faithfulness","i-know-who-holds-tomorrow","jesus-strong-and-kind"] },
+  { d:"2026-11-08", type:"Parallel", passage:"Luke 5:27–39", mEn:"Jenny, Chelsea", mCn:"Eileen Zhang", en:["here-we-stand","his-mercy-is-more","jesus-paid-it-all-christ-i-owe"], cn:[] },
+  { d:"2026-11-15", type:"Parallel", passage:"Luke 6:1–19", mEn:"Lucy, Chelsea", mCn:"Eileen Zhang", en:["no-other-name-trevor-hodge","jerusalem","all-glory-be-to-christ"], cn:[] },
+  { d:"2026-11-22", type:"Parallel · King of the Universe", passage:"Luke 6:20–49", mEn:"Enya, Jenny", mCn:"Eileen Zhang", en:[], cn:[] },
+  { d:"2026-11-29", type:"Parallel", passage:"Luke 7:1–30", mEn:"Elim, Enya", mCn:"Eileen Zhang", en:[], cn:[] }
+];
+const TYPE_ZH = { "Parallel":"平行崇拜", "Combined":"联合崇拜", "Father's Day":"父亲节", "Communion":"圣餐", "Mid-Autumn Festival":"中秋节", "157th Anniversary":"157周年堂庆", "King of the Universe":"基督普世君王日" };
+const BOOK_ZH = { "Revelation":"启示录","Matthew":"马太福音","Galatians":"加拉太书","Luke":"路加福音","John":"约翰福音" };
+function sydneyToday(){ try{ return new Intl.DateTimeFormat("en-CA",{timeZone:"Australia/Sydney"}).format(new Date()); }catch(e){ return new Date().toISOString().slice(0,10); } }
+const TODAY = sydneyToday();
+const WEEK = SCHEDULE.find(w => w.d >= TODAY) || SCHEDULE[SCHEDULE.length-1];
+
+/* ===== Library ===== */
+const S = (id, en, zh, key, ccli, lib, pages) => ({ id, en, zh, key, ccli, lib, pages, sheet: true });
+const SONGS = [
+  S("a-thousand-hallelujahs","A Thousand Hallelujahs","千声哈利路亚","Db",7190270,"en",3),
+  S("all-creatures-of-our-god-and-king-lasst-uns-erfreuen","All Creatures of Our God and King","主手所造","D",1503,"en",2),
+  S("all-glory-be-to-christ","All Glory Be to Christ","荣耀归于基督","E",7008232,"en",2),
+  S("all-i-have-is-christ","All I Have Is Christ","基督我所有","D",5174122,"en",2),
+  S("amazing-grace","Amazing Grace","奇异恩典","G",22025,"en",1),
+  S("be-thou-my-vision","Be Thou My Vision","成为我异象","D",7056332,"en",2),
+  S("before-the-throne-of-god-above","Before the Throne of God Above","在高天真神宝座前","D",2306412,"en",2),
+  S("behold-our-god","Behold Our God","","C",5937510,"en",2),
+  S("build-my-life","Build My Life","","G",7070345,"en",2),
+  S("christ-our-hope-in-life-and-death","Christ Our Hope in Life and Death","生死盼望在基督","F",7147502,"en",3),
+  S("christus-victor-amen","Christus Victor (Amen)","基督得胜者","F",7245980,"en",3),
+  S("come-praise-and-glorify","Come Praise and Glorify","来赞美我们的上帝","A",6167664,"en",2),
+  S("facing-a-task-unfinished-we-go-to-all-the-world","Facing a Task Unfinished","工尚未成","C",7002026,"en",3),
+  S("great-is-thy-faithfulness","Great Is Thy Faithfulness","你的信实广大","D",18723,"en",1),
+  S("he-will-hold-me-fast","He Will Hold Me Fast","主必保守我","G",7016161,"en",2),
+  S("here-we-stand","Here We Stand","我们在这蒙赎的教会","D",7201507,"en",2),
+  S("his-mercy-is-more","His Mercy Is More","祂怜悯更多","G",7065053,"en",1),
+  S("holy-holy-holy-nicaea","Holy, Holy, Holy","圣哉，圣哉，圣哉","D",1156,"en",1),
+  S("how-deep-the-father-s-love-for-us","How Deep the Father's Love for Us","天父的爱深越海洋","D",1558110,"en",1),
+  S("how-great-is-our-god","How Great Is Our God","我神真伟大","C",4348399,"en",2),
+  S("how-great-thou-art","How Great Thou Art","你真伟大","Bb",14181,"en",2),
+  S("i-know-who-holds-tomorrow","I Know Who Holds Tomorrow","我知谁掌管明天","C",17982,"en",2),
+  S("immanuel","Immanuel","以马内利","D",71014,"en",3),
+  S("in-christ-alone","In Christ Alone","在基督里","Eb",3350395,"en",2),
+  S("it-is-well-with-my-soul","It Is Well with My Soul","我心灵得安宁","C",25376,"en",1),
+  S("jerusalem","Jerusalem","耶路撒冷","B",7003218,"en",2),
+  S("jesus-paid-it-all-christ-i-owe","Jesus Paid It All","主为我舍身","Db",22331,"en",1),
+  S("jesus-strong-and-kind","Jesus, Strong and Kind","良善全能主","C",7139992,"en",2),
+  S("joy-to-the-world-antioch","Joy to the World","普世欢腾","D",24016,"en",1),
+  S("no-other-name-trevor-hodge","No Other Name (Trevor Hodge)","别无他名","Bb",5737284,"en",3),
+  S("no-other-name-hillsong","No Other Name (Hillsong)","别无他名","G",7019979,"en",3),
+  S("o-breath-of-life","O Breath of Life","生命的灵","B",5439290,"en",2),
+  S("o-come-all-ye-faithful-adeste-fideles","O Come, All Ye Faithful","齐来，宗主信徒","G",31054,"en",1),
+  S("o-great-god","O Great God","哦伟大至高神","C",4804015,"en",2),
+  S("only-a-holy-god","Only a Holy God","圣洁的神","D",7073332,"en",4),
+  S("rock-of-ages-toplady","Rock of Ages","万古磐石为我开","Bb",40588,"en",1),
+  S("the-power-of-the-cross","The Power of the Cross","十字架的大能","A",4490766,"en",2),
+  S("turn-your-eyes-upon-jesus","Turn Your Eyes Upon Jesus","当转眼仰望耶稣","F",15960,"en",1),
+  S("we-are-one-in-the-father-s-love","We Are One (In the Father's Love)","合而为一","Bb",7145090,"en",2),
+  S("when-i-survey","When I Survey","奇妙十架","Eb",7273855,"en",3),
+  S("yet-not-i-but-through-christ-in-me","Yet Not I but Through Christ in Me","不是我 是基督住我心","C",7121852,"en",2),
+  S("hark-the-herald-angels-sing-mendelssohn","Hark! The Herald Angels Sing","听那天使高声唱","F",27738,"zh",1),
+  S("o-holy-night","O Holy Night","哦圣善夜","C",32015,"zh",2),
+];
+/* Songs in the slide library with no SongSelect lead sheet (yet) */
+const NOSHEET = [
+  ["On That Day","在那日","en","Lead sheet to be re-downloaded"],
+  ["Calling All Sinners","","en","Not available on SongSelect"],
+  ["As the Deer","如鹿切慕溪水","zh","To be downloaded"],
+  ["","主我相信","zh"],["","我的心你要称颂耶和华","zh"],["","这一生最美的祝福","zh"],["","真光","zh"],
+  ["","坐在宝座上圣洁羔羊","zh"],["","活出爱","zh"],["","认定你","zh"],["","鸡叫的时候","zh"],
+  ["Who Do I Have But You","除你以外","zh"],["","是这份爱","zh"],["","叫我抬起头的神","zh"],["","真实的悔改","zh"],
+  ["","医治的爱","zh"],["","深触我心","zh"],["","宝贵十架","zh"],["","有一位神","zh"],["","专心仰望耶稣","zh"],
+  ["Who Can Separate Us","谁能使我与神的爱隔绝","zh"],["","我要向高山举目","zh"],["","我要一心称谢你","zh"],["","十架的爱","zh"],
+  ["","我愿为你去","zh"],["How Could It Be","何等恩典","zh"],["","爱中相遇","zh"],["","一生爱你","zh"],["Love, Joy and Life","爱喜乐生命","zh"]
+].map(([en,zh,lib,note]) => ({ id:null, en, zh, lib, key:null, sheet:false, note }));
+
+const T = {
+  en:{ahead:"The Sundays ahead",diary:"Term Diary",eyebrow:"Music Ministry · Lead Sheets",sunday:"This Sunday",library:"Library",search:"Search English or Chinese title",
+      all:"All",fen:"English Choruses",fzh:"Chinese Choruses",openpdf:"Open PDF",close:"Close",tbc:"Songs to be confirmed by the music team",
+      passage:"Passage",songs:n=>n+" songs",sheets:n=>n+" lead sheets",noSheet:"Lyric slides only · no lead sheet",
+      stripCap:(a,b)=>a+" lead sheets · "+b+" on the coming Sunday",pages:n=>n+(n>1?" pages":" page"),none:"No songs match that search.",
+      loading:"Loading lead sheet…",fail:"This lead sheet couldn't be shown here. Use Open PDF instead.",
+      licence:"Lead sheets from CCLI SongSelect for use by St Paul's Kogarah musicians only, under CCLI licence 519980. Please don't share the team password or forward the sheets outside the team."},
+  zh:{ahead:"接下来的主日",diary:"学期日程",eyebrow:"音乐事工 · 旋律和弦谱",sunday:"This Sunday",library:"Library",search:"搜索中文或英文歌名",
+      all:"全部",fen:"英文诗歌",fzh:"中文诗歌",openpdf:"打开PDF",close:"关闭",tbc:"诗歌待音乐团队确认",
+      passage:"经文",songs:n=>n+" 首",sheets:n=>n+" 份乐谱",noSheet:"仅有歌词投影 · 暂无乐谱",
+      stripCap:(a,b)=>a+" 份乐谱 · 本主日 "+b+" 首",pages:n=>n+" 页",none:"没有找到相关诗歌。",
+      loading:"正在载入乐谱…",fail:"无法在此显示乐谱，请点“打开PDF”。",
+      licence:"乐谱来自CCLI SongSelect，仅供圣保罗堂音乐同工使用（CCLI许可证 519980）。请勿转发给团队以外的人。"}
+};
+
+/* ===== Team-password protection: lead sheets are stored AES-GCM encrypted ===== */
+const CRYPTO = {"salt": "2f3c706ea3d0a0f89fe3e2b6f39d0289", "iter": 250000, "check": "6312c285b8e44de08f56e6cdafa2e144cb3d4c9238f22c3de27c9316217584690c364c22326dc2553170991b4d3f"};
+const hex = h => new Uint8Array(h.match(/../g).map(x=>parseInt(x,16)));
+let KEY = null;
+async function deriveKey(pw){
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveKey"]);
+  return crypto.subtle.deriveKey({name:"PBKDF2", salt:hex(CRYPTO.salt), iterations:CRYPTO.iter, hash:"SHA-256"}, base, {name:"AES-GCM", length:256}, false, ["decrypt"]);
+}
+async function decrypt(key, bytes){
+  const b = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
+  return new Uint8Array(await crypto.subtle.decrypt({name:"AES-GCM", iv:b.slice(0,12)}, key, b.slice(12)));
+}
+async function tryUnlock(pw){
+  try { const k = await deriveKey(pw); await decrypt(k, hex(CRYPTO.check)); KEY = k; return true; } catch(e){ return false; }
+}
+function showLock(){ const on = !!KEY; $("lock").hidden = on; $("unlocked").hidden = !on; }
+let lang = "en", filter = "all";
+try { const s = localStorage.getItem("pg-lang"); if (s === "zh" || s === "en") lang = s; } catch(e){}
+const byId = Object.fromEntries(SONGS.map(s => [s.id, s]));
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const primary = s => lang === "zh" && s.zh ? s.zh : (s.en || s.zh);
+const secondary = s => lang === "zh" ? (s.zh ? s.en : "") : s.zh;
+const ids = w => [...(w.en||[]),...(w.cn||[])].filter(x => typeof x === "string");
+const onSunday = new Set(ids(WEEK));
+
+function songButton(s){
+  const sec = secondary(s);
+  const key = s.sheet ? `<span class="key">${esc(s.key)}</span>` : `<span class="key none">—</span>`;
+  const meta = s.sheet ? `CCLI ${s.ccli} · ${T[lang].pages(s.pages)}` : esc(s.note || T[lang].noSheet);
+  return `<button class="song" ${s.sheet ? `data-id="${s.id}"` : "disabled"}>
+    <span><span class="t ${lang==="zh"&&s.zh?"zh":""}">${esc(primary(s))}</span>${sec?`<span class="c ${lang==="zh"?"":"zh"}">${esc(sec)}</span>`:""}<span class="meta">${meta}</span></span>${key}</button>`;
+}
+function renderStrip(){
+  const n = SONGS.length, mid = (n-1)/2;
+  $("strip").innerHTML = SONGS.map((s,i) => {
+    const h = 30 + 50*Math.cos(((i-mid)/n)*Math.PI*0.9);
+    return `<span class="${onSunday.has(s.id)?"on":""}" style="height:${h.toFixed(0)}px"></span>`;
+  }).join("");
+  $("strip-cap").textContent = T[lang].stripCap(n, [...onSunday].filter(id=>byId[id]).length);
+}
+const zhType = t => t.split(" · ").map(x => TYPE_ZH[x] || x).join(" · ");
+const zhPassage = p => Object.entries(BOOK_ZH).reduce((a,[e,z]) => a.split(e).join(z), p);
+function fmtDay(iso){
+  const d = new Date(iso+"T00:00:00");
+  if (lang === "zh") return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+  return d.toLocaleDateString("en-AU",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+}
+function resolve(x){ return typeof x === "string" ? byId[x] : Object.assign({ id:null, sheet:false, lib:"en", note: lang==="zh" ? "暂无乐谱" : "No lead sheet yet" }, x); }
+function setList(list){
+  if (!list || !list.length) return `<p class="tbc">${T[lang].tbc}</p>`;
+  return `<ol class="set">${list.map((x,i)=>{ const s = resolve(x); return s ? `<li><span class="n">${i+1}</span>${songButton(s)}</li>` : ""; }).join("")}</ol>`;
+}
+function renderWeek(){
+  const w = WEEK, combined = /^Combined/.test(w.type);
+  $("week-date").textContent = fmtDay(w.d);
+  const typ = lang==="zh" ? zhType(w.type) : w.type;
+  const pas = lang==="zh" ? zhPassage(w.passage) : w.passage;
+  $("week-meta").innerHTML = `<span class="label gold">${esc(typ)}</span><span class="label">${T[lang].passage} <b class="${lang==="zh"?"zh":""}">${esc(pas)}</b></span>`;
+  const cards = [{ h: combined ? (lang==="zh"?"联合崇拜 · 英文音乐团队":"Combined service · English music team") : (lang==="zh"?"9:15 英文堂":"9:15am English"), m:w.mEn, list:w.en }];
+  if (!combined) cards.push({ h: lang==="zh"?"9:00 中文堂":"9:00am Chinese", m:w.mCn, list:w.cn });
+  $("services").innerHTML = cards.map(c=>`<div class="svc"><h3>${esc(c.h)}</h3>${c.m?`<p class="who"><span>${lang==="zh"?"乐手":"Musicians"}</span> ${esc(c.m)}</p>`:""}${setList(c.list)}</div>`).join("");
+  $("quarter").innerHTML = SCHEDULE.filter(x => x.d >= TODAY && x !== WEEK).map(x => {
+    const songs = (x.en||[]).map(resolve).filter(Boolean);
+    return `<li><div class="qd"><b>${esc(fmtDay(x.d).replace(/^\w+day, /,""))}</b><span>${esc(lang==="zh"?zhType(x.type):x.type)}</span><span>${esc(x.mEn||"")}</span></div>
+      <div class="qs">${songs.length ? songs.map(s => s.sheet ? `<button class="qsong" data-id="${s.id}">${esc(primary(s))} <i>${esc(s.key)}</i></button>` : `<span class="qsong off">${esc(primary(s))}</span>`).join("") : `<span class="tbc">${T[lang].tbc}</span>`}</div></li>`;
+  }).join("");
+}
+function renderLib(){
+  const q = $("q").value.trim().toLowerCase();
+  const all = [...SONGS, ...NOSHEET].filter(s => (filter==="all"||s.lib===filter) &&
+    (!q || (s.en||"").toLowerCase().includes(q) || (s.zh||"").includes(q)));
+  all.sort((a,b)=> (b.sheet-a.sheet) || primary(a).localeCompare(primary(b), lang==="zh"?"zh-Hans-CN":"en"));
+  $("lib").innerHTML = all.length ? all.map(s=>`<li class="${s.sheet?"":"nosheet"}">${songButton(s)}</li>`).join("") : `<li class="empty">${T[lang].none}</li>`;
+  $("count").textContent = T[lang].sheets(all.filter(s=>s.sheet).length);
+}
+function applyLock(){
+  $("lock-msg").textContent = lang==="zh" ? "输入音乐团队密码，即可在此设备上打开乐谱。" : "Enter the music team password to open lead sheets on this device.";
+  $("pw").placeholder = lang==="zh" ? "团队密码" : "Team password";
+  $("pw-go").textContent = lang==="zh" ? "解锁" : "Unlock";
+  $("unlocked-t").textContent = lang==="zh" ? "此设备已解锁乐谱。" : "Lead sheets unlocked on this device.";
+  $("relock").textContent = lang==="zh" ? "上锁" : "Lock";
+}
+function applyLang(){ applyLock();
+  document.documentElement.lang = lang === "zh" ? "zh-Hans" : "en";
+  document.querySelectorAll("[data-i18n]").forEach(el => { const v = T[lang][el.dataset.i18n]; if (typeof v === "string") el.textContent = v; });
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => el.placeholder = T[lang][el.dataset.i18nPh]);
+  $("lang-en").setAttribute("aria-pressed", lang==="en"); $("lang-zh").setAttribute("aria-pressed", lang==="zh");
+  renderStrip(); renderWeek(); renderLib();
+}
+
+/* viewer */
+let renderToken = 0;
+async function openSheet(id){
+  const s = byId[id]; if (!s) return;
+  if (!KEY){ $("pw").focus(); $("lock").scrollIntoView({behavior:"smooth",block:"center"}); return; }
+  $("v-title").textContent = primary(s);
+  $("v-sub").textContent = `${lang==="zh"?"调":"Key"} ${s.key} · CCLI ${s.ccli}` + (secondary(s) ? " · " + secondary(s) : "");
+  $("v-open").removeAttribute("href");
+  $("viewer").hidden = false; document.body.style.overflow = "hidden";
+  $("v-close").focus();
+  const pages = $("pages"); pages.innerHTML = `<p class="msg">${T[lang].loading}</p>`;
+  const tok = ++renderToken;
+  try {
+    const res = await fetch("s/" + id + ".bin"); if (!res.ok) throw new Error("fetch");
+    const data = await decrypt(KEY, await res.arrayBuffer());
+    if (tok !== renderToken) return;
+    const url = URL.createObjectURL(new Blob([data], {type:"application/pdf"}));
+    $("v-open").href = url; $("v-open").setAttribute("download", primary(s) + " (" + s.key + ").pdf");
+    if (!window.pdfjsLib) throw new Error("pdf.js unavailable");
+    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    const pdf = await pdfjsLib.getDocument({data: data.slice()}).promise;
+    if (tok !== renderToken) return;
+    pages.innerHTML = "";
+    const width = Math.min(pages.clientWidth - 32, 900);
+    for (let p = 1; p <= pdf.numPages; p++){
+      const page = await pdf.getPage(p);
+      if (tok !== renderToken) return;
+      const base = page.getViewport({ scale: 1 });
+      const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+      const vp = page.getViewport({ scale: (width / base.width) * dpr });
+      const c = document.createElement("canvas");
+      c.width = vp.width; c.height = vp.height; c.style.width = (vp.width/dpr) + "px";
+      c.setAttribute("aria-label", primary(s) + " — " + T[lang].pages(p));
+      pages.appendChild(c);
+      await page.render({ canvasContext: c.getContext("2d"), viewport: vp }).promise;
+    }
+  } catch (e) {
+    if (tok === renderToken) pages.innerHTML = `<p class="msg">${T[lang].fail}</p>`;
+  }
+}
+function closeSheet(){ renderToken++; const u=$("v-open").href; if(u&&u.startsWith("blob:")) URL.revokeObjectURL(u); $("viewer").hidden = true; document.body.style.overflow = ""; $("pages").innerHTML = ""; }
+
+document.addEventListener("click", e => {
+  const b = e.target.closest(".song[data-id], .qsong[data-id]"); if (b) openSheet(b.dataset.id);
+  const l = e.target.closest("[data-lang]"); if (l){ lang = l.dataset.lang; try{localStorage.setItem("pg-lang",lang)}catch(e){} applyLang(); }
+  const f = e.target.closest("[data-f]"); if (f){ filter = f.dataset.f; document.querySelectorAll("[data-f]").forEach(x=>x.setAttribute("aria-pressed", x===f)); renderLib(); }
+});
+$("v-close").addEventListener("click", closeSheet);
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("viewer").hidden) closeSheet(); });
+$("q").addEventListener("input", renderLib);
+$("lock").addEventListener("submit", async e => {
+  e.preventDefault(); const pw = $("pw").value; if (!pw) return;
+  $("pw-go").disabled = true; $("pw-err").hidden = true;
+  const ok = await tryUnlock(pw);
+  $("pw-go").disabled = false;
+  if (ok){ try{ localStorage.setItem("pg-pw", pw); }catch(e){} $("pw").value = ""; showLock(); }
+  else { $("pw-err").textContent = lang==="zh" ? "密码不正确，请再试一次。" : "That password didn't work. Check with the music team leader."; $("pw-err").hidden = false; }
+});
+$("relock").addEventListener("click", () => { KEY = null; try{ localStorage.removeItem("pg-pw"); }catch(e){} showLock(); });
+applyLang(); showLock();
+(async () => { let pw = null; try{ pw = localStorage.getItem("pg-pw"); }catch(e){} if (pw && await tryUnlock(pw)) showLock(); })();
+</script>
+
+</body>
+</html>

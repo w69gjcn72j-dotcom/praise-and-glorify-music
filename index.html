@@ -210,6 +210,7 @@ footer .small{font-size:11px;color:var(--faint);max-width:60ch;letter-spacing:.0
   <footer>
     <q>Singing to God with gratitude in your hearts.</q>
     <span class="label gold">Colossians III · XVI</span>
+    <span class="small" id="updated"></span>
     <span class="small" data-i18n="licence">Lead sheets from CCLI SongSelect for use by St Paul's Kogarah musicians only, under CCLI licence 519980. Please don't forward the sheets outside the team.</span>
   </footer>
 </div>
@@ -224,90 +225,20 @@ footer .small{font-size:11px;color:var(--faint);max-width:60ch;letter-spacing:.0
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="data.js"></script>
 <script>
 /* ===== Song sets by Sunday — from the 2026 3rd Quarter Roster. Tim adds each new quarter and fills TBC weeks. ===== */
-const X = (en, zh) => ({ en, zh });   /* a song with no lead sheet in the library */
-const SCHEDULE = [
-  { d:"2026-08-30", type:"Parallel", passage:"Revelation 7:9–17", mEn:"Lucy, Enya", mCn:"Eileen Zhang", en:["holy-holy-holy-nicaea","a-thousand-hallelujahs","all-glory-be-to-christ"], cn:[] },
-  { d:"2026-09-06", type:"Combined · Father's Day", passage:"Matthew 22:1–14", mEn:"Enya, Jenny", en:["great-is-thy-faithfulness","only-a-holy-god","how-deep-the-father-s-love-for-us"] },
-  { d:"2026-09-13", type:"Combined · Communion", passage:"Galatians 3:27–4:7", mEn:"Lucy, Chelsea", en:["build-my-life","christ-our-hope-in-life-and-death","a-thousand-hallelujahs"] },
-  { d:"2026-09-20", type:"Parallel", passage:"Luke 1:1–25", mEn:"Elim, Enya", mCn:"Eileen Zhang", en:["great-is-thy-faithfulness","all-i-have-is-christ","jesus-strong-and-kind"], cn:[] },
-  { d:"2026-09-27", type:"Parallel · Mid-Autumn Festival", passage:"John 8:12–20; Matthew 5:14–16", mEn:"David, Jenny", mCn:"Eileen Zhang, Enya (TBC)", en:["a-thousand-hallelujahs","we-are-one-in-the-father-s-love","his-mercy-is-more"], cn:[] },
-  { d:"2026-10-04", type:"Combined · Communion", passage:"Luke 1:26–45", mEn:"Lucy, Chelsea", en:[X("Whom Have I in Heaven But You","除你以外"),"yet-not-i-but-through-christ-in-me","all-i-have-is-christ"] },
-  { d:"2026-10-11", type:"Combined · 157th Anniversary", passage:"Luke 3:1–38", mEn:"Enya, Lucy, Peter Li, Jenny", en:["christus-victor-amen","all-glory-be-to-christ","facing-a-task-unfinished-we-go-to-all-the-world"] },
-  { d:"2026-10-18", type:"Parallel", passage:"Luke 4:1–15", mEn:"Elim, Enya", mCn:"Eileen Zhang", en:["all-i-have-is-christ","great-is-thy-faithfulness","jerusalem"], cn:[] },
-  { d:"2026-10-25", type:"Parallel", passage:"Luke 4:16–44", mEn:"Lucy, Chelsea", mCn:"Eileen Zhang", en:["build-my-life","only-a-holy-god",X("Calling All Sinners","")], cn:[] },
-  { d:"2026-11-01", type:"Combined · Communion", passage:"Luke 5:1–26", mEn:"Enya, Peter Li", en:["great-is-thy-faithfulness","i-know-who-holds-tomorrow","jesus-strong-and-kind"] },
-  { d:"2026-11-08", type:"Parallel", passage:"Luke 5:27–39", mEn:"Jenny, Chelsea", mCn:"Eileen Zhang", en:["here-we-stand","his-mercy-is-more","jesus-paid-it-all-christ-i-owe"], cn:[] },
-  { d:"2026-11-15", type:"Parallel", passage:"Luke 6:1–19", mEn:"Lucy, Chelsea", mCn:"Eileen Zhang", en:["no-other-name-trevor-hodge","jerusalem","all-glory-be-to-christ"], cn:[] },
-  { d:"2026-11-22", type:"Parallel · King of the Universe", passage:"Luke 6:20–49", mEn:"Enya, Jenny", mCn:"Eileen Zhang", en:[], cn:[] },
-  { d:"2026-11-29", type:"Parallel", passage:"Luke 7:1–30", mEn:"Elim, Enya", mCn:"Eileen Zhang", en:[], cn:[] }
-];
+const PG = window.PG || {SONGS:[],SCHEDULE:[],NOSHEET:[],CRYPTO:{}};
+const SCHEDULE = PG.SCHEDULE;
 const TYPE_ZH = { "Parallel":"平行崇拜", "Combined":"联合崇拜", "Father's Day":"父亲节", "Communion":"圣餐", "Mid-Autumn Festival":"中秋节", "157th Anniversary":"157周年堂庆", "King of the Universe":"基督普世君王日" };
 const BOOK_ZH = { "Revelation":"启示录","Matthew":"马太福音","Galatians":"加拉太书","Luke":"路加福音","John":"约翰福音" };
 function sydneyToday(){ try{ return new Intl.DateTimeFormat("en-CA",{timeZone:"Australia/Sydney"}).format(new Date()); }catch(e){ return new Date().toISOString().slice(0,10); } }
 const TODAY = sydneyToday();
-const WEEK = SCHEDULE.find(w => w.d >= TODAY) || SCHEDULE[SCHEDULE.length-1];
+const WEEK = SCHEDULE.find(w => w.d >= TODAY) || SCHEDULE[SCHEDULE.length-1] || {d:TODAY,type:"",passage:"",en:[],cn:[]};
 
 /* ===== Library ===== */
-const S = (id, en, zh, key, ccli, lib, pages) => ({ id, en, zh, key, ccli, lib, pages, sheet: true });
-const SONGS = [
-  S("a-thousand-hallelujahs","A Thousand Hallelujahs","千声哈利路亚","Db",7190270,"en",3),
-  S("all-creatures-of-our-god-and-king-lasst-uns-erfreuen","All Creatures of Our God and King","主手所造","D",1503,"en",2),
-  S("all-glory-be-to-christ","All Glory Be to Christ","荣耀归于基督","E",7008232,"en",2),
-  S("all-i-have-is-christ","All I Have Is Christ","基督我所有","D",5174122,"en",2),
-  S("amazing-grace","Amazing Grace","奇异恩典","G",22025,"en",1),
-  S("be-thou-my-vision","Be Thou My Vision","成为我异象","D",7056332,"en",2),
-  S("before-the-throne-of-god-above","Before the Throne of God Above","在高天真神宝座前","D",2306412,"en",2),
-  S("behold-our-god","Behold Our God","","C",5937510,"en",2),
-  S("build-my-life","Build My Life","","G",7070345,"en",2),
-  S("christ-our-hope-in-life-and-death","Christ Our Hope in Life and Death","生死盼望在基督","F",7147502,"en",3),
-  S("christus-victor-amen","Christus Victor (Amen)","基督得胜者","F",7245980,"en",3),
-  S("come-praise-and-glorify","Come Praise and Glorify","来赞美我们的上帝","A",6167664,"en",2),
-  S("facing-a-task-unfinished-we-go-to-all-the-world","Facing a Task Unfinished","工尚未成","C",7002026,"en",3),
-  S("great-is-thy-faithfulness","Great Is Thy Faithfulness","你的信实广大","D",18723,"en",1),
-  S("he-will-hold-me-fast","He Will Hold Me Fast","主必保守我","G",7016161,"en",2),
-  S("here-we-stand","Here We Stand","我们在这蒙赎的教会","D",7201507,"en",2),
-  S("his-mercy-is-more","His Mercy Is More","祂怜悯更多","G",7065053,"en",1),
-  S("holy-holy-holy-nicaea","Holy, Holy, Holy","圣哉，圣哉，圣哉","D",1156,"en",1),
-  S("how-deep-the-father-s-love-for-us","How Deep the Father's Love for Us","天父的爱深越海洋","D",1558110,"en",1),
-  S("how-great-is-our-god","How Great Is Our God","我神真伟大","C",4348399,"en",2),
-  S("how-great-thou-art","How Great Thou Art","你真伟大","Bb",14181,"en",2),
-  S("i-know-who-holds-tomorrow","I Know Who Holds Tomorrow","我知谁掌管明天","C",17982,"en",2),
-  S("immanuel","Immanuel","以马内利","D",71014,"en",3),
-  S("in-christ-alone","In Christ Alone","在基督里","Eb",3350395,"en",2),
-  S("it-is-well-with-my-soul","It Is Well with My Soul","我心灵得安宁","C",25376,"en",1),
-  S("jerusalem","Jerusalem","耶路撒冷","B",7003218,"en",2),
-  S("jesus-paid-it-all-christ-i-owe","Jesus Paid It All","主为我舍身","Db",22331,"en",1),
-  S("jesus-strong-and-kind","Jesus, Strong and Kind","良善全能主","C",7139992,"en",2),
-  S("joy-to-the-world-antioch","Joy to the World","普世欢腾","D",24016,"en",1),
-  S("no-other-name-trevor-hodge","No Other Name (Trevor Hodge)","别无他名","Bb",5737284,"en",3),
-  S("no-other-name-hillsong","No Other Name (Hillsong)","别无他名","G",7019979,"en",3),
-  S("o-breath-of-life","O Breath of Life","生命的灵","B",5439290,"en",2),
-  S("o-come-all-ye-faithful-adeste-fideles","O Come, All Ye Faithful","齐来，宗主信徒","G",31054,"en",1),
-  S("o-great-god","O Great God","哦伟大至高神","C",4804015,"en",2),
-  S("only-a-holy-god","Only a Holy God","圣洁的神","D",7073332,"en",4),
-  S("rock-of-ages-toplady","Rock of Ages","万古磐石为我开","Bb",40588,"en",1),
-  S("the-power-of-the-cross","The Power of the Cross","十字架的大能","A",4490766,"en",2),
-  S("turn-your-eyes-upon-jesus","Turn Your Eyes Upon Jesus","当转眼仰望耶稣","F",15960,"en",1),
-  S("we-are-one-in-the-father-s-love","We Are One (In the Father's Love)","合而为一","Bb",7145090,"en",2),
-  S("when-i-survey","When I Survey","奇妙十架","Eb",7273855,"en",3),
-  S("yet-not-i-but-through-christ-in-me","Yet Not I but Through Christ in Me","不是我 是基督住我心","C",7121852,"en",2),
-  S("hark-the-herald-angels-sing-mendelssohn","Hark! The Herald Angels Sing","听那天使高声唱","F",27738,"zh",1),
-  S("o-holy-night","O Holy Night","哦圣善夜","C",32015,"zh",2),
-];
-/* Songs in the slide library with no SongSelect lead sheet (yet) */
-const NOSHEET = [
-  ["On That Day","在那日","en","Lead sheet to be re-downloaded"],
-  ["Calling All Sinners","","en","Not available on SongSelect"],
-  ["As the Deer","如鹿切慕溪水","zh","To be downloaded"],
-  ["","主我相信","zh"],["","我的心你要称颂耶和华","zh"],["","这一生最美的祝福","zh"],["","真光","zh"],
-  ["","坐在宝座上圣洁羔羊","zh"],["","活出爱","zh"],["","认定你","zh"],["","鸡叫的时候","zh"],
-  ["Who Do I Have But You","除你以外","zh"],["","是这份爱","zh"],["","叫我抬起头的神","zh"],["","真实的悔改","zh"],
-  ["","医治的爱","zh"],["","深触我心","zh"],["","宝贵十架","zh"],["","有一位神","zh"],["","专心仰望耶稣","zh"],
-  ["Who Can Separate Us","谁能使我与神的爱隔绝","zh"],["","我要向高山举目","zh"],["","我要一心称谢你","zh"],["","十架的爱","zh"],
-  ["","我愿为你去","zh"],["How Could It Be","何等恩典","zh"],["","爱中相遇","zh"],["","一生爱你","zh"],["Love, Joy and Life","爱喜乐生命","zh"]
-].map(([en,zh,lib,note]) => ({ id:null, en, zh, lib, key:null, sheet:false, note }));
+const SONGS = PG.SONGS;
+const NOSHEET = PG.NOSHEET;
 
 const T = {
   en:{ahead:"The Sundays ahead",diary:"Term Diary",eyebrow:"Music Ministry · Lead Sheets",sunday:"This Sunday",library:"Library",search:"Search English or Chinese title",
@@ -325,7 +256,7 @@ const T = {
 };
 
 /* ===== Team-password protection: lead sheets are stored AES-GCM encrypted ===== */
-const CRYPTO = {"salt": "2f3c706ea3d0a0f89fe3e2b6f39d0289", "iter": 250000, "check": "6312c285b8e44de08f56e6cdafa2e144cb3d4c9238f22c3de27c9316217584690c364c22326dc2553170991b4d3f"};
+const CRYPTO = PG.CRYPTO;
 const hex = h => new Uint8Array(h.match(/../g).map(x=>parseInt(x,16)));
 let KEY = null;
 async function deriveKey(pw){
@@ -382,7 +313,7 @@ function renderWeek(){
   $("week-date").textContent = fmtDay(w.d);
   const typ = lang==="zh" ? zhType(w.type) : w.type;
   const pas = lang==="zh" ? zhPassage(w.passage) : w.passage;
-  $("week-meta").innerHTML = `<span class="label gold">${esc(typ)}</span><span class="label">${T[lang].passage} <b class="${lang==="zh"?"zh":""}">${esc(pas)}</b></span>`;
+  $("week-meta").innerHTML = (w.notes?`<span class="label">${esc(w.notes)}</span>`:"") + `<span class="label gold">${esc(typ)}</span><span class="label">${T[lang].passage} <b class="${lang==="zh"?"zh":""}">${esc(pas)}</b></span>`;
   const cards = [{ h: combined ? (lang==="zh"?"联合崇拜 · 英文音乐团队":"Combined service · English music team") : (lang==="zh"?"9:15 英文堂":"9:15am English"), m:w.mEn, list:w.en }];
   if (!combined) cards.push({ h: lang==="zh"?"9:00 中文堂":"9:00am Chinese", m:w.mCn, list:w.cn });
   $("services").innerHTML = cards.map(c=>`<div class="svc"><h3>${esc(c.h)}</h3>${c.m?`<p class="who"><span>${lang==="zh"?"乐手":"Musicians"}</span> ${esc(c.m)}</p>`:""}${setList(c.list)}</div>`).join("");
@@ -475,6 +406,7 @@ $("lock").addEventListener("submit", async e => {
 });
 $("relock").addEventListener("click", () => { KEY = null; try{ localStorage.removeItem("pg-pw"); }catch(e){} showLock(); });
 applyLang(); showLock();
+if (PG.updated) $("updated").textContent = (lang==="zh"?"更新于 ":"Updated ") + PG.updated;
 (async () => { let pw = null; try{ pw = localStorage.getItem("pg-pw"); }catch(e){} if (pw && await tryUnlock(pw)) showLock(); })();
 </script>
 
